@@ -7,8 +7,10 @@ import {
     EDIT_TODO,
     UPDATE_TODO,
     VisibilityFilters
-} from '../Actions/actions'
-const { SHOW_ALL } = VisibilityFilters
+} from '../Actions/actions';
+import { getTodosFromLocalStorage } from '../helpers/utils';
+
+const { SHOW_ALL } = VisibilityFilters;
 
 function visibilityFilter(state = SHOW_ALL, action) {
     switch (action.type) {
@@ -19,9 +21,15 @@ function visibilityFilter(state = SHOW_ALL, action) {
     }
 }
 
-function todos(state = [], action) {
+function todos(state = getTodosFromLocalStorage(), action) {
     switch (action.type) {
         case ADD_TODO:
+            localStorage.setItem("todos", JSON.stringify([...state, {
+                text: action.text,
+                index: action.index,
+                completed: false,
+                editing: false,
+            }]));
             return [
                 ...state,
                 {

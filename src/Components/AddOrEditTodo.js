@@ -19,7 +19,6 @@ let AddOrEditTodo = ({ dispatch, isEdit, index, previousText }) => {
         <form
             onSubmit={onSubmit}
         >
-            <button type="submit">+</button>
             <label htmlFor="todo">{isEdit ? 'Edit To-do' : 'Add To-do'}</label>
             <input
                 type="text"
@@ -28,6 +27,7 @@ let AddOrEditTodo = ({ dispatch, isEdit, index, previousText }) => {
                 value={todo}
                 onChange={e => setTodo(e.target.value)}
             />
+            <button type="submit">+</button>
         </form>
     )
 }
