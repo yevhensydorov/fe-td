@@ -13,8 +13,15 @@ let TodoItem = ({ onClick, completed, text, index, dispatch }) => {
           checked={completed}
           onClick={(e) => dispatch(toggleTodo(index))}
         />
-        <label for={text}>{text}</label>
-        <button onClick={(e) => dispatch(editTodo(index))}>Edit</button>
+        <label
+          style={{ textDecoration: completed ? "line-through" : "none" }}
+          htmlFor={text}
+        >
+          {text}
+        </label>
+        {!completed && (
+          <button onClick={(e) => dispatch(editTodo(index))}>Edit</button>
+        )}
         <button onClick={(e) => dispatch(removeTodo(index))}>Delete</button>
       </li>
     </>
